@@ -4,7 +4,7 @@ import LocalStorage from "../services/LocalStorage";
 const localStorageService: LocalStorage = LocalStorage.getInstance();
 
 const createStore = () => {
-  const { subscribe, set, update } = writable<TCard[]>(
+  const { subscribe, update } = writable<TCard[]>(
     localStorageService.getCards()
   );
 
@@ -47,9 +47,7 @@ const createStore = () => {
       })
     );
 
-  const setCards = (cardsArr: TCard[]) => set(cardsArr);
-
-  return { subscribe, addCard, removeCard, updateCard, setCards, renameCard };
+  return { subscribe, addCard, removeCard, updateCard, renameCard };
 };
 
 export const cards = createStore();

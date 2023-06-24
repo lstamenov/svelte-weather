@@ -9,7 +9,7 @@
 </script>
 
 <div class="cards">
-  {#each $cards as { data, requestTime } (data.location.name)}
+  {#each $cards as { data, requestTime } (`${data.location.lat},${data.location.lon}`)}
     {#key data}
       <Card forecast={data} {requestTime} />
     {/key}

@@ -10,6 +10,15 @@
 
   const handleResultClick = (result: SearchResultI) => async () => {
     const { lon, lat } = result;
+
+    if (
+      $cards.find(
+        ({ data: { location } }) => location.lat === lat && location.lon === lon
+      )
+    ) {
+      return;
+    }
+
     const card = await service.fetchForecastData(lon, lat);
     cards.addCard(card);
     handleClearInput();
